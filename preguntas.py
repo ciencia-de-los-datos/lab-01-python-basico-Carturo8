@@ -12,6 +12,12 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+# Importar las librerías necesarias
+import csv
+
+# Cargo el archivo csv
+file_csv = "c:/Users/Gamer/Documents/GitHub/lab-01-python-basico-Carturo8/data.csv"
+
 
 def pregunta_01():
     """
@@ -21,7 +27,20 @@ def pregunta_01():
     214
 
     """
-    return
+    # Variable para almacenar la suma de la segunda columna
+    resultados_1 = 0
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Convertir el segundo elmento de cada fila (valores de la columna 2) a entero y sumarlo
+            resultados_1 += int(row[1])
+
+    return resultados_1
 
 
 def pregunta_02():
@@ -39,7 +58,30 @@ def pregunta_02():
     ]
 
     """
-    return
+    # Diccionario para almacenar la cantidad de registros por cada letra
+    diccionario_col_1 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener las letras de la columna 1
+                letra = row[0]
+                # Incrementar la cantidad para la letra correspondiente
+                diccionario_col_1[letra] = diccionario_col_1.get(letra, 0) + 1
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_2 = [(letra, cantidad) for letra, cantidad in diccionario_col_1.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_2 = sorted(resultados_2, key=lambda x: x[0])
+
+    return resultados_2
 
 
 def pregunta_03():
@@ -57,7 +99,32 @@ def pregunta_03():
     ]
 
     """
-    return
+    # Diccionario para almacenar la suma de la columna 2 por cada letra
+    diccionario_col_1_2 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener las letras de la columna 1
+                letra = row[0]
+                # Obtener el valor de la columna 2
+                valor_col_2 = int(row[1])
+                # Realizar e incrementar la suma para la letra correspondiente
+                diccionario_col_1_2[letra] = diccionario_col_1_2.get(letra, 0) + valor_col_2
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_3 = [(letra, suma) for letra, suma in diccionario_col_1_2.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_3 = sorted(resultados_3, key=lambda x: x[0])
+
+    return resultados_3
 
 
 def pregunta_04():
@@ -82,7 +149,32 @@ def pregunta_04():
     ]
 
     """
-    return
+    # Diccionario para almacenar la cantidad de registros por cada mes
+    diccionario_col_3 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener la fecha de la columna 3
+                fecha = row[2]
+                # Obtener el mes de la fecha
+                mes = fecha.split('-')[1]
+                # Incrementar la cantidad para el mes correspondiente
+                diccionario_col_3[mes] = diccionario_col_3.get(mes, 0) + 1
+    
+    # Convertir el diccionario en una lista de tuplas
+    resultados_4 = [(mes, cantidad) for mes, cantidad in diccionario_col_3.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_4 = sorted(resultados_4, key=lambda x: x[0])
+    
+    return resultados_4
 
 
 def pregunta_05():
@@ -100,7 +192,33 @@ def pregunta_05():
     ]
 
     """
-    return
+    # Diccionario para almacenar el valor máximo y mínimo de la columna 2 por cada letra
+    diccionario_max_min_col_1_2 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener las letras de la columna 1
+                letra = row[0]
+                # Obtener el valor de la columna 2
+                valor_col_2 = int(row[1])
+                # Obtener el valor máximo y mínimo para la letra correspondiente
+                maximo, minimo = diccionario_max_min_col_1_2.get(letra, (valor_col_2, valor_col_2))
+                diccionario_max_min_col_1_2[letra] = (max(valor_col_2, maximo), min(valor_col_2, minimo))
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_5 = [(letra, maximo, minimo) for letra, (maximo, minimo) in diccionario_max_min_col_1_2.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_5 = sorted(resultados_5, key=lambda x: x[0])    
+
+    return  resultados_5
 
 
 def pregunta_06():
@@ -125,7 +243,37 @@ def pregunta_06():
     ]
 
     """
-    return
+    # Diccionario para almacenar el valor asociado más pequeño y el valor asociado más grande por cada clave
+    diccionario_col_5 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Separar el diccionario de la columna 5 en claves y valores
+                claves_valores = row[4].split(',')
+                # Iterar sobre las claves y valores
+                for clave_valor in claves_valores:
+                    # Separar la clave y el valor
+                    clave, valor = clave_valor.split(':')
+                    # Convertir el valor a entero
+                    valor = int(valor)
+                    # Obtener el valor asociado más pequeño y el valor asociado más grande por cada clave
+                    minimo, maximo = diccionario_col_5.get(clave, (valor, valor))
+                    diccionario_col_5[clave] = (min(valor, minimo), max(valor, maximo))
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_6 = [(clave, minimo, maximo) for clave, (minimo, maximo) in diccionario_col_5.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_6 = sorted(resultados_6, key=lambda x: x[0])
+      
+    return resultados_6
 
 
 def pregunta_07():
@@ -149,7 +297,34 @@ def pregunta_07():
     ]
 
     """
-    return
+    # Diccionario para almacenar las letras asociadas a cada valor posible de la columna 2
+    diccionario_col_2 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener el valor de la columna 2
+                valor_col_2 = int(row[1])
+                # Obtener la letra de la columna 1
+                letra = row[0]
+                # Obtener la lista de letras asociadas al valor de la columna 2
+                letras = diccionario_col_2.get(valor_col_2, [])
+                letras.append(letra)
+                diccionario_col_2[valor_col_2] = letras
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_7 = [(valor, letras) for valor, letras in diccionario_col_2.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_7 = sorted(resultados_7, key=lambda x: x[0])
+
+    return resultados_7
 
 
 def pregunta_08():
@@ -174,7 +349,35 @@ def pregunta_08():
     ]
 
     """
-    return
+    # Diccionario para almacenar las letras asociadas a cada valor posible de la columna 2
+    diccionario_col_2 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener el valor de la columna 2
+                valor_col_2 = int(row[1])
+                # Obtener la letra de la columna 1
+                letra = row[0]
+                # Obtener la lista de letras asociadas al valor de la segunda columna
+                letras = diccionario_col_2.get(valor_col_2, [])
+                letras.append(letra)
+                diccionario_col_2[valor_col_2] = list(set(letras))
+
+    # Convertir el diccionario en una lista de tuplas
+    resultados_8 = [(valor, letras) for valor, letras in diccionario_col_2.items()]
+
+    # Ordenar la lista de tuplas alfabéticamente
+    resultados_8 = sorted(resultados_8, key=lambda x: x[0])
+    # resultados_8 = sorted(resultados_8, key=lambda x:(x[0], x[1]))
+
+    return resultados_8
 
 
 def pregunta_09():
@@ -197,7 +400,30 @@ def pregunta_09():
     }
 
     """
-    return
+    # Diccionario para almacenar la cantidad de registros en que aparece cada clave de la columna 5
+    resultados_9 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Separar el diccionario de la columna 5 en claves y valores
+                claves_valores = row[4].split(',')
+                # Iterar sobre las claves
+                for clave_valor in claves_valores:
+                    # Separar la clave y el valor
+                    clave, _ = clave_valor.split(':')
+                    # Incrementar la cantidad para la clave correspondiente
+                    resultados_9[clave] = resultados_9.get(clave, 0) + 1
+    
+    resultados_9 = dict(sorted(resultados_9.items()))
+
+    return resultados_9
 
 
 def pregunta_10():
@@ -218,7 +444,31 @@ def pregunta_10():
 
 
     """
-    return
+    # Lista para almacenar las tuplas con la letra de la columna 1 y la cantidad de elementos de las columnas 4 y 5
+    resultados_10 = []
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener la letra de la columna 1
+                letra = row[0]
+                # Separar los elementos de la columna 4
+                elementos = row[3].split(',')
+                # Separar el diccionario de la columna 5 en claves y valores
+                claves_valores = row[4].split(',')
+                # Obtener la cantidad de elementos de las columnas 4 y 5
+                cantidad_col_4 = len(elementos)
+                cantidad_col_5 = len(claves_valores)
+                # Agregar la tupla a la lista de resultados
+                resultados_10.append((letra, cantidad_col_4, cantidad_col_5))
+
+    return resultados_10
 
 
 def pregunta_11():
@@ -239,7 +489,34 @@ def pregunta_11():
 
 
     """
-    return
+    # Diccionario para almacenar la suma de la columna 2 para cada letra de la columna 4
+    resultados_11 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Separar los elementos de la columna 4
+                elementos = row[3].split(',')
+                # Obtener la letra de la columna 1
+                letra = row[0]
+                # Obtener el valor de la columna 2
+                valor_col_2 = int(row[1])
+                # Iterar sobre los elementos de la columna 4
+                for elemento in elementos:
+                    # Convertir la letra a minúsculas
+                    elemento = elemento.lower()
+                    # Incrementar la suma para la letra correspondiente
+                    resultados_11[elemento] = resultados_11.get(elemento, 0) + valor_col_2
+
+    resultados_11 = dict(sorted(resultados_11.items()))
+
+    return resultados_11
 
 
 def pregunta_12():
@@ -257,4 +534,31 @@ def pregunta_12():
     }
 
     """
-    return
+    # Diccionario para almacenar la suma de los valores de la columna 5 para cada letra de la columna 1
+    resultados_12 = {}
+
+    # Abrir el archivo CSV en modo lectura
+    with open(file_csv, 'r') as file:
+        # Crear un lector CSV con el delimitador especificado
+        reader = csv.reader(file, delimiter='\t')
+        
+        # Leer cada fila del archivo CSV
+        for row in reader:
+            # Verificar si la fila tiene elementos
+            if row:
+                # Obtener la letra de la columna 1
+                letra = row[0]
+                # Separar el diccionario de la columna 5 en claves y valores
+                claves_valores = row[4].split(',')
+                # Iterar sobre las claves y valores
+                for clave_valor in claves_valores:
+                    # Separar la clave y el valor
+                    _, valor = clave_valor.split(':')
+                    # Convertir el valor a entero
+                    valor = int(valor)
+                    # Incrementar la suma para la letra correspondiente
+                    resultados_12[letra] = resultados_12.get(letra, 0) + valor
+
+    resultados_12 = dict(sorted(resultados_12.items()))
+
+    return resultados_12
