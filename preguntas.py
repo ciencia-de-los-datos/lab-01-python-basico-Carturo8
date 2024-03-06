@@ -11,12 +11,15 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-
 # Importar las librerías necesarias
+import os
 import csv
 
-# Cargo el archivo csv
-file_csv = "c:/Users/Gamer/Documents/GitHub/lab-01-python-basico-Carturo8/data.csv"
+# Obtén la ruta del directorio del script actual
+dir_script = os.path.dirname(os.path.realpath(__file__))
+
+# Construye la ruta completa al archivo CSV utilizando una ruta relativa
+file_csv = os.path.join(dir_script, 'data.csv')
 
 
 def pregunta_01():
