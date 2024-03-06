@@ -374,11 +374,10 @@ def pregunta_08():
                 diccionario_col_2[valor_col_2] = list(set(letras))
 
     # Convertir el diccionario en una lista de tuplas
-    resultados_8 = [(valor, letras) for valor, letras in diccionario_col_2.items()]
+    resultados_8 = [(valor, sorted(letras)) for valor, letras in diccionario_col_2.items()]
 
     # Ordenar la lista de tuplas alfabéticamente
     resultados_8 = sorted(resultados_8, key=lambda x: x[0])
-    # resultados_8 = sorted(resultados_8, key=lambda x:(x[0], x[1]))
 
     return resultados_8
 
